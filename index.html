@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>삼각비</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대화형 삼각비 수업 계획서: 건물 높이 측정하기</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 py-8 md:py-12">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-2">📐 대화형 삼각비 수업 여정</h1>
+            <p class="text-lg md:text-xl text-[#8A9A5B]">줄자 없이 건물 높이를 재는 비밀, 삼각비 탐험!</p>
+        </header>
+
+        <main class="space-y-12">
+            
+            <section id="intro" class="section-card text-center">
+                <h2 class="text-2xl font-bold mb-4">🎯 학습 목표</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">
+                    이 수업 여정을 통해 학생들은 삼각비의 핵심 개념을 파악하고, 이를 실제 세상의 문제에 적용하는 방법을 배웁니다. 최종 목표는 팀원들과 협력하여 우리 학교 건물의 높이를 성공적으로 측정하는 것입니다. 단순한 공식 암기를 넘어, 수학이 어떻게 현실의 문제를 해결하는 강력한 도구가 되는지 직접 체험하게 됩니다.
+                </p>
+            </section>
+            
+            <section id="session1" class="section-card">
+                <div class="text-center mb-8">
+                    <span class="text-sm font-bold text-white bg-[#8A9A5B] px-3 py-1 rounded-full">1차시: 개념 탐험</span>
+                    <h2 class="text-2xl md:text-3xl font-bold mt-2">삼각비 도구상자 만들기</h2>
+                    <p class="text-gray-600 mt-2">삼각비의 세 친구, sin, cos, tan를 만나봅시다. 아래 버튼을 눌러 각 삼각비가 직각삼각형의 어떤 변들의 비율인지 확인해보세요.</p>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-8">
+                    <div class="relative w-full max-w-sm h-64">
+                        <!-- 직각삼각형을 SVG 선분으로 그립니다. -->
+                        <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <!-- 밑변 -->
+                            <line x1="0" y1="100" x2="100" y2="100" stroke-width="2" class="stroke-current text-gray-300"/>
+                            <!-- 높이 -->
+                            <line x1="100" y1="100" x2="100" y2="0" stroke-width="2" class="stroke-current text-gray-300"/>
+                            <!-- 빗변 -->
+                            <line x1="0" y1="100" x2="100" y2="0" stroke-width="2" class="stroke-current text-gray-300"/>
+                        </svg>
+                        
+                        <!-- 각 변의 이름 레이블 -->
+                        <div id="side-opposite" class="absolute top-1/4 right-0 transform translate-x-full pr-2 flex items-center text-lg font-semibold text-[#A2B9D1] transition-opacity duration-300 opacity-20">높이</div>
+                        <div id="side-adjacent" class="absolute bottom-0 left-1/2 transform translate-y-full pt-2 -translate-x-1/2 flex justify-center text-lg font-semibold text-[#A2B9D1] transition-opacity duration-300 opacity-20">밑변</div>
+                        <div id="side-hypotenuse" class="absolute top-[25%] left-[25%] -translate-x-1/2 -translate-y-1/2 rotate-[-45deg] text-lg font-semibold text-[#A2B9D1] transition-opacity duration-300 opacity-20">빗변</div>
+                        
+                        <!-- 각 A 표시 -->
+                         <div class="absolute bottom-0 left-0 text-3xl font-bold p-2">A</div>
+                         <!-- 직각 표시 -->
+                         <div class="absolute bottom-0 right-0 border-2 border-gray-400 w-8 h-8"></div>
+                    </div>
+                    
+                    <div class="w-full lg:w-1/2 space-y-4">
+                        <div class="flex justify-center space-x-4 mb-6">
+                            <button onclick="showTrig('sin')" class="interactive-btn bg-[#8A9A5B] text-white px-6 py-2 rounded-lg font-bold">sin(A)</button>
+                            <button onclick="showTrig('cos')" class="interactive-btn bg-[#8A9A5B] text-white px-6 py-2 rounded-lg font-bold">cos(A)</button>
+                            <button onclick="showTrig('tan')" class="interactive-btn bg-[#8A9A5B] text-white px-6 py-2 rounded-lg font-bold">tan(A)</button>
+                        </div>
+                        <div id="trig-info" class="text-center p-4 bg-gray-50 rounded-lg min-h-[100px] flex items-center justify-center">
+                            <p class="text-gray-500">버튼을 선택하여 설명을 확인하세요.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="session2" class="section-card">
+                <div class="text-center mb-8">
+                    <span class="text-sm font-bold text-white bg-[#A2B9D1] px-3 py-1 rounded-full">2차시: 실전 연습</span>
+                    <h2 class="text-2xl md:text-3xl font-bold mt-2">그림자로 내 키 재기 시뮬레이터</h2>
+                     <p class="text-gray-600 mt-2">태양의 각도와 내 그림자 길이를 알면, 삼각비를 이용해 내 키를 계산할 수 있습니다. 값을 입력하고 직접 계산해보세요!</p>
+                </div>
+                <div class="max-w-xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="shadow-length" class="block text-sm font-medium text-gray-700">그림자 길이 (cm)</label>
+                            <input type="number" id="shadow-length" value="150" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#8A9A5B] focus:border-[#8A9A5B]">
+                        </div>
+                        <div>
+                            <label for="sun-angle" class="block text-sm font-medium text-gray-700">태양의 고도 (각도 °)</label>
+                            <input type="number" id="sun-angle" value="45" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#8A9A5B] focus:border-[#8A9A5B]">
+                        </div>
+                    </div>
+                    <button onclick="calculateMyHeight()" class="w-full bg-[#8A9A5B] text-white py-3 rounded-lg font-bold hover:bg-opacity-90 transition">내 키 계산하기</button>
+                    <div id="height-result" class="mt-6 text-center text-xl font-bold p-4 bg-green-50 text-green-800 rounded-lg hidden"></div>
+                </div>
+            </section>
+            
+            <section id="session3" class="section-card">
+                <div class="text-center mb-8">
+                    <span class="text-sm font-bold text-white bg-red-400 px-3 py-1 rounded-full">3차시: 최종 미션</span>
+                    <h2 class="text-2xl md:text-3xl font-bold mt-2">건물 높이 측정 시뮬레이터</h2>
+                     <p class="text-gray-600 mt-2">이제 최종 미션입니다. 건물까지의 거리, 올려본 각도, 그리고 내 눈높이를 이용해 건물의 전체 높이를 계산해봅시다.</p>
+                </div>
+                <div class="flex flex-col lg:flex-row-reverse gap-8 items-center">
+                    <div class="w-full lg:w-1/2">
+                        <div class="space-y-4">
+                            <div>
+                                <label for="building-distance" class="block text-sm font-medium text-gray-700">건물까지의 거리 (m)</label>
+                                <input type="number" id="building-distance" value="20" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#8A9A5B] focus:border-[#8A9A5B]">
+                            </div>
+                            <div>
+                                <label for="elevation-angle" class="block text-sm font-medium text-gray-700">올려본 각도 (각도 °)</label>
+                                <input type="number" id="elevation-angle" value="35" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#8A9A5B] focus:border-[#8A9A5B]">
+                            </div>
+                            <div>
+                                <label for="eye-height" class="block text-sm font-medium text-gray-700">측정자 눈높이 (m)</label>
+                                <input type="number" id="eye-height" value="1.6" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#8A9A5B] focus:border-[#8A9A5B]">
+                            </div>
+                        </div>
+                        <button onclick="calculateBuildingHeight()" class="w-full mt-6 bg-[#8A9A5B] text-white py-3 rounded-lg font-bold hover:bg-opacity-90 transition">건물 높이 계산하기</button>
+                        <div id="building-result" class="mt-6 text-center text-xl font-bold p-4 bg-blue-50 text-blue-800 rounded-lg hidden"></div>
+                    </div>
+                     <div class="w-full lg:w-1/2 mt-8 lg:mt-0">
+                        <div class="chart-container">
+                            <canvas id="buildingHeightChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="debrief" class="section-card">
+                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">🚀 미션 브리핑</h2>
+                 <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-[#8A9A5B]">📝 평가 계획</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>관찰 평가:</strong> 수업 참여도, 조별 활동 시 협력 태도, 문제 해결 노력 등을 종합적으로 평가합니다.</li>
+                            <li><strong>보고서 평가:</strong> 측정 과정, 결과, 오차 분석이 포함된 건물 높이 측정 보고서를 평가합니다.</li>
+                            <li><strong>질의응답:</strong> 각 차시별 핵심 개념에 대한 이해도를 질문을 통해 확인합니다.</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h3 class="text-xl font-bold mb-4 text-[#A2B9D1]">📚 준비물</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>1차시:</strong> 직각삼각형 그림 자료, 필기도구</li>
+                            <li><strong>2차시:</strong> 삼각비 표, 간이 경사계 (스마트폰 앱), 줄자, 필기도구</li>
+                            <li><strong>3차시:</strong> 줄자, 간이 경사계 (스마트폰 앱), 필기도구, 조별 보고서 양식</li>
+                        </ul>
+                    </div>
+                 </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-12 md:mt-16 text-gray-500">
+            <p>&copy; 2025 중학교 3학년 수학, 삼각비 활용 수업</p>
+        </footer>
+
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
